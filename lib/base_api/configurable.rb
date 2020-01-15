@@ -21,6 +21,14 @@ module BaseApi
       yield self
     end
 
+    # Reset configuration options to default values
+    def reset!
+      BaseApi::Configurable.keys.each do |key|
+        instance_variable_set(:"@#{key}", BaseApi::Default.options[key])
+      end
+      self
+    end
+
     private
 
     def options

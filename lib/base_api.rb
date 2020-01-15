@@ -1,6 +1,7 @@
 require "base_api/version"
 require "base_api/client"
 require "base_api/configurable"
+require "base_api/default"
 
 module BaseApi
   class Error < StandardError; end
