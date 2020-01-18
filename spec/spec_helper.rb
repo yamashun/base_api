@@ -3,6 +3,7 @@ require "base_api"
 require "pry"
 require 'webmock/rspec'
 require 'vcr'
+require "cgi"
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
@@ -24,7 +25,7 @@ VCR.configure do |c|
   c.filter_sensitive_data('<BaseCode>') { test_base_code }
   c.filter_sensitive_data('<BaseClientId>') { test_base_client_id }
   c.filter_sensitive_data('<BaseClientSecret>') { test_base_client_secret }
-  c.filter_sensitive_data('<BaseRedirectURI>') { test_base_redirect_uri }
+  c.filter_sensitive_data('<BaseRedirectURI>') { CGI.escape(test_base_redirect_uri) }
 end
 
 
