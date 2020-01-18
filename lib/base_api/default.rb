@@ -9,7 +9,6 @@ module BaseApi
         Hash[BaseApi::Configurable.keys.map{|key| [key, send(key)]}]
       end
 
-      # TODO: set default values
       def client_id
         ENV['BASE_API_CLIENT_ID']
       end
