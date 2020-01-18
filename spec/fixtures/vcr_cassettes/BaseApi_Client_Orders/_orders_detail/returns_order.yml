@@ -1,0 +1,34 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.thebase.in/1/orders/detail/testuniquekey
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
+      - Bearer <BearerToken>
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Date:
+      - Sat, 18 Jan 2020 16:49:26 GMT
+      Server:
+      - nginx
+      Content-Length:
+      - '2158'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"order":{"unique_key":"testuniquekey","ordered":1570261856,"cancelled":1575385369,"dispatched":null,"payment":"creditcard","shipping_method":null,"shipping_fee":300,"cod_fee":0,"total":0,"first_name":"aaa","last_name":"bbb","country":"Japan","zip_code":"1010011","prefecture":"\u6771\u4eac\u90fd","address":"feragraw","address2":"fvdsgreges
+        fsgre","mail_address":"hogehoge@co.jp","tel":"09012345678","remark":"","add_comment":null,"delivery_company_id":0,"tracking_number":null,"delivery_date":null,"delivery_time_zone":null,"terminated":true,"dispatch_status":"cancelled","modified":1575385369,"order_receiver":{"first_name":null,"last_name":null,"zip_code":null,"prefecture":null,"address":null,"address2":null,"tel":null},"order_discount":{"discount":200,"note":"\u30af\u30fc\u30dd\u30f3\u300c\u30ad\u30f3\u30b0\u30c0\u30e0\u3059\u3054\u3044\u5272\u300d(NW54C6B8)\u306e\u5229\u7528","is_allocate_user_balance_log":0},"order_amount_adjustment":{"adjusted_amount":0},"order_header_coin":{"discount":0,"note":null},"order_charge":{"collected_fee":18},"c_c_payment_transaction":{"collected_fee":62,"status":"cancelled"},"cvs_payment_transaction":{"collected_fee":null,"status":null},"bt_payment_transaction":{"collected_fee":null,"status":null},"atobarai_payment_transaction":{"collected_fee":null,"status":null},"carrier_payment_transaction":{"collected_fee":null,"status":null},"paypal_payment_transaction":{"collected_fee":null,"status":null},"coin_payment_transaction":{"collected_fee":null,"status":null},"user_balance_logs":[],"order_items":[{"order_item_id":19749229,"item_id":23245394,"variation_id":null,"title":"\uff08\u4e2d\u53e4\uff09\u30ad\u30f3\u30b0\u30c0\u30e0
+        55\u520a","variation":"","price":500,"amount":1,"total":500,"item_tax_type":1,"consumption_tax_rate":10,"status":"cancelled","shipping_method":null,"shipping_fee":0,"shipping_start":null,"shipping_end":null,"modified":1575385369}],"subscription":{"unique_key":null,"repeat_number":null,"repeat_times":null}}}'
+    http_version:
+  recorded_at: Sat, 18 Jan 2020 16:49:26 GMT
+recorded_with: VCR 5.0.0
