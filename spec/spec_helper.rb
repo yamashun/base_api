@@ -27,6 +27,7 @@ VCR.configure do |c|
   c.filter_sensitive_data('<BaseClientId>') { test_base_client_id }
   c.filter_sensitive_data('<BaseClientSecret>') { test_base_client_secret }
   c.filter_sensitive_data('<BaseRedirectURI>') { CGI.escape(test_base_redirect_uri) }
+  c.filter_sensitive_data('<BaseShopURI>') { test_base_shop_url }
 end
 
 
@@ -61,4 +62,8 @@ end
 
 def test_base_redirect_uri
   ENV.fetch('BASE_API_REDIRECT_URI'){ 'hogehogeredirecturi' }
+end
+
+def test_base_shop_url
+  ENV.fetch('BASE_API_SHOP_URL'){ 'hogehogeshopurl' }
 end

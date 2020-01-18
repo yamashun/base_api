@@ -1,0 +1,32 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.thebase.in/1/users/me
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
+      - Bearer <BearerToken>
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Date:
+      - Sat, 18 Jan 2020 15:39:47 GMT
+      Server:
+      - nginx
+      Content-Length:
+      - '427'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"user":{"shop_id":"yamashun","shop_name":"yamashun","shop_introduction":"\u30b7\u30e7\u30c3\u30d7","shop_url":"http:\/\/<BaseShopURI>","twitter_id":"","facebook_id":"","ameba_id":"","instagram_id":"","background":null,"display_background":0,"repeat_background":1,"logo":"https:\/\/base-ec2.akamaized.net\/images\/user\/logo\/3c593cbced43fdd1715a4a29e78d645a.png","display_logo":0,"mail_address":"hogehoge@gmail.com"}}'
+    http_version:
+  recorded_at: Sat, 18 Jan 2020 15:39:47 GMT
+recorded_with: VCR 5.0.0

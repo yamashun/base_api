@@ -1,6 +1,7 @@
 require 'base_api/configurable'
 require 'httparty'
 require 'base_api/client/authorizations'
+require 'base_api/client/users'
 require 'base_api/client/items'
 
 module BaseApi
@@ -8,6 +9,7 @@ module BaseApi
     include HTTParty
     include BaseApi::Configurable
     include BaseApi::Client::Authorizations
+    include BaseApi::Client::Users
     include BaseApi::Client::Items
 
     base_uri 'https://api.thebase.in'
