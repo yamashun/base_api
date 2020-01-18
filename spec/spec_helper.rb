@@ -22,6 +22,7 @@ VCR.configure do |c|
   c.cassette_library_dir = "spec/fixtures/vcr_cassettes"
   c.hook_into :webmock
   c.filter_sensitive_data('<BearerToken>') { test_base_access_token }
+  c.filter_sensitive_data('<BaseRefreshToken>') { test_base_refresh_token }
   c.filter_sensitive_data('<BaseCode>') { test_base_code }
   c.filter_sensitive_data('<BaseClientId>') { test_base_client_id }
   c.filter_sensitive_data('<BaseClientSecret>') { test_base_client_secret }
@@ -40,6 +41,10 @@ end
 
 def test_base_access_token
   ENV.fetch('BASE_API_ACCESS_TOKEN'){ 'hogehogeaccesstoken' }
+end
+
+def test_base_refresh_token
+  ENV.fetch('BASE_API_REFRESH_TOKEN'){ 'hogehogerefreshtoken' }
 end
 
 def test_base_code
