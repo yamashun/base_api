@@ -1,7 +1,7 @@
 module BaseApi
   module Configurable
     attr_accessor :client_id, :client_secret, :code, :access_token, :refresh_token,
-                  :per_page, :offset
+                  :per_page, :offset, :redirect_uri
 
     class << self
       def keys
@@ -12,7 +12,8 @@ module BaseApi
           :access_token,
           :refresh_token,
           :per_page,
-          :offset
+          :offset,
+          :redirect_uri
         ]
       end
     end

@@ -37,6 +37,10 @@ module BaseApi
       def offset
         ""
       end
+
+      def redirect_uri
+        ""
+      end
     end
   end
 end

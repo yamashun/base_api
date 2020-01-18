@@ -1,5 +1,7 @@
 require 'base_api/configurable'
 require 'httparty'
+require 'octokit/client/authorizations'
+require 'octokit/client/items'
 
 module BaseApi
   class Client
@@ -18,6 +20,29 @@ module BaseApi
       end
 
       yield(self) if block_given?
+    end
+
+    def fetch_next_page
+      paginate(@last_page_args[:path], next_page_payload)
+    end
+
+    def reset_response
+      @response = nil
+      @@last_page_args = nil
+    end
+
+    private
+
+    def post_call_api(path, payload = {})
+      @response = self.class.post(path, { body: payload, headers: authorization_header })
+    end
+
+    def get_call_api(path, payload = {})
+      @response = self.class.get(path, { query: payload, headers: authorization_header })
+    end
+
+    def authorization_header
+      { Authorization: "Bearer #{access_token}" }
     end
   end
 end
