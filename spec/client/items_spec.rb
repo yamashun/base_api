@@ -19,7 +19,7 @@ RSpec.describe BaseApi::Client::Items do
 
       client.fetch_next_page
       expect(items['items'].first['item_id']).not_to be_nil
-      assert_requested :get, base_api_url("/1/items?offset=0&limit=1")
+      assert_requested :get, base_api_url("/1/items?offset=1&limit=1")
     end
   end
 end
