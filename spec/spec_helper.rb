@@ -20,7 +20,11 @@ VCR.configure do |c|
   c.configure_rspec_metadata!
   c.cassette_library_dir = "spec/fixtures/vcr_cassettes"
   c.hook_into :webmock
-  c.filter_sensitive_data('<BearerToken>') { test_access_token }
+  c.filter_sensitive_data('<BearerToken>') { test_base_access_token }
+  c.filter_sensitive_data('<BaseCode>') { test_base_code }
+  c.filter_sensitive_data('<BaseClientId>') { test_base_client_id }
+  c.filter_sensitive_data('<BaseClientSecret>') { test_base_client_secret }
+  c.filter_sensitive_data('<BaseRedirectURI>') { test_base_redirect_uri }
 end
 
 
@@ -33,6 +37,22 @@ def base_api_url(url)
   uri.to_s
 end
 
-def test_access_token
+def test_base_access_token
   ENV.fetch('BASE_API_ACCESS_TOKEN'){ 'hogehogeaccesstoken' }
+end
+
+def test_base_code
+  ENV.fetch('BASE_API_CODE'){ 'hogehogecode' }
+end
+
+def test_base_client_id
+  ENV.fetch('BASE_API_CLIENT_ID'){ 'hogehogeclientid' }
+end
+
+def test_base_client_secret
+  ENV.fetch('BASE_API_CLIENT_SECRET'){ 'hogehogeclientsecret' }
+end
+
+def test_base_redirect_uri
+  ENV.fetch('BASE_API_REDIRECT_URI'){ 'hogehogeredirecturi' }
 end
