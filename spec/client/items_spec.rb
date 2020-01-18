@@ -4,21 +4,21 @@ RSpec.describe BaseApi::Client::Items do
       BaseApi.reset!
     end
 
-    let(:client) { BaseApi::Client.new(access_token: test_access_token) }
+    let(:client) { BaseApi::Client.new(access_token: test_base_access_token) }
 
     it 'returns items' do
-      items = client.items
-      expect(items['items'].first['item_id']).not_to be_nil
+      reponse = client.items
+      expect(reponse['items'].first['item_id']).not_to be_nil
       assert_requested :get, base_api_url("/1/items?offset=0&limit=10")
     end
 
     it 'returns items and returns next page' do
-      items = client.items(limit: 1)
-      expect(items['items'].first['item_id']).not_to be_nil
+      reponse = client.items(limit: 1)
+      expect(reponse['items'].first['item_id']).not_to be_nil
       assert_requested :get, base_api_url("/1/items?offset=0&limit=1")
 
-      client.fetch_next_page
-      expect(items['items'].first['item_id']).not_to be_nil
+      reponse2 = client.fetch_next_page
+      expect(reponse2['items'].first['item_id']).not_to be_nil
       assert_requested :get, base_api_url("/1/items?offset=1&limit=1")
     end
   end
