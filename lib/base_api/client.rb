@@ -1,12 +1,14 @@
 require 'base_api/configurable'
 require 'httparty'
-require 'octokit/client/authorizations'
-require 'octokit/client/items'
+require 'base_api/client/authorizations'
+require 'base_api/client/items'
 
 module BaseApi
   class Client
     include HTTParty
     include BaseApi::Configurable
+    include BaseApi::Client::Authorizations
+    include BaseApi::Client::Items
 
     base_uri 'https://api.thebase.in'
 
@@ -43,6 +45,28 @@ module BaseApi
 
     def authorization_header
       { Authorization: "Bearer #{access_token}" }
+    end
+
+    def paginate(path, payload = {})
+      if defined?(@last_page_args) && @last_page_args[:path] != path
+        reset_response
+      end
+
+      if payload[:offset].nil?
+        payload.merge!(offset: @offset)
+      end
+      if payload[:limit].nil?
+        payload.merge!(limit: @limit)
+      end
+
+      @last_page_args = { path: path, payload: payload }
+
+      get_call_api(path, payload)
+    end
+
+    def next_page_payload
+      next_offset = @last_page_args[:payload][:offset] + @last_page_args[:payload][:limit]
+      @last_page_args[:payload].merge(offset: next_offset)
     end
   end
 end

@@ -29,8 +29,8 @@ module BaseApi
         ENV['BASE_API_REFRESH_TOKEN']
       end
 
-      def per_page
-        ENV.fetch("BASE_API_PER_PAGE") { 10 }
+      def limit
+        ENV.fetch("BASE_API_limit") { 10 }
       end
 
       def offset
