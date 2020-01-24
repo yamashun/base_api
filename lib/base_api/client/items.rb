@@ -16,6 +16,13 @@ module BaseApi
       def items_search(q, option = {})
         paginate('/1/items/search', { q: q }.merge(option))
       end
+
+      # @param [Integer | String] item_id
+      # @return [HTTParty::Response]
+      # @see https://docs.thebase.in/docs/api/items/detail
+      def items_detail(item_id)
+        get_call_api("/1/items/detail/#{item_id}")
+      end
     end
   end
 end

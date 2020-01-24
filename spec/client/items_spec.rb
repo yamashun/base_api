@@ -49,4 +49,18 @@ RSpec.describe BaseApi::Client::Items do
       end
     end
   end
+
+  describe '.items_detail', :vcr do
+    before do
+      BaseApi.reset!
+    end
+    let(:client) { BaseApi::Client.new(access_token: test_base_access_token) }
+    let(:item_id) { 25931281 }
+
+    it 'returns item detail' do
+      reponse = client.items_detail(item_id)
+      expect(reponse['item']).not_to be_nil
+      assert_requested :get, base_api_url("/1/items/detail/#{item_id}")
+    end
+  end
 end
