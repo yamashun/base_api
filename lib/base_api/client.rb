@@ -28,6 +28,17 @@ module BaseApi
       yield(self) if block_given?
     end
 
+    def inspect
+      inspected = super
+
+      inspected.gsub! @code, '*******' if @code
+      inspected.gsub! @access_token, "#{'*'*28}#{@access_token[28..-1]}" if @access_token
+      inspected.gsub! @refresh_token, "#{'*'*28}#{@refresh_token[28..-1]}" if @refresh_token
+      inspected.gsub! @client_secret, "#{'*'*28}#{@client_secret[28..-1]}" if @client_secret
+
+      inspected
+    end
+
     def fetch_next_page
       paginate(@last_page_args[:path], next_page_payload)
     end
