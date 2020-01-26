@@ -176,4 +176,19 @@ RSpec.describe BaseApi::Client::Items do
       assert_requested :post, base_api_url('/1/items/edit_stock')
     end
   end
+
+  describe '.items_delete_variation', :vcr do
+    before do
+      BaseApi.reset!
+    end
+    let(:client) { BaseApi::Client.new(access_token: test_base_access_token) }
+    let(:item_id) { 26105775 }
+    let(:variation_id) { 51396772 }
+
+    it 'deletes item variation' do
+      response = client.items_delete_variation(item_id, variation_id)
+      expect(response['item']).not_to be_nil
+      assert_requested :post, base_api_url('/1/items/delete_variation')
+    end
+  end
 end

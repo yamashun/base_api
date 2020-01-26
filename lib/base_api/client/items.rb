@@ -65,6 +65,14 @@ module BaseApi
       def items_edit_stock(params)
         post_call_api('/1/items/edit_stock', params)
       end
+
+      # @param [Integer|String] item_id
+      # @param [Integer|String] variation_id
+      # @return [HTTParty::Response]
+      # @see https://docs.thebase.in/docs/api/items/delete_variation
+      def items_delete_variation(item_id, variation_id)
+        post_call_api('/1/items/delete_variation', { item_id: item_id, variation_id: variation_id })
+      end
     end
   end
 end
