@@ -1,0 +1,32 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.thebase.in/1/items/delete
+    body:
+      encoding: UTF-8
+      string: item_id=26105902
+    headers:
+      Authorization:
+      - Bearer <BearerToken>
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Date:
+      - Sun, 26 Jan 2020 03:17:40 GMT
+      Server:
+      - nginx
+      Content-Length:
+      - '15'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"result":true}'
+    http_version: 
+  recorded_at: Sun, 26 Jan 2020 03:17:40 GMT
+recorded_with: VCR 5.0.0

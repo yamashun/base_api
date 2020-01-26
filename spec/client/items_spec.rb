@@ -92,7 +92,7 @@ RSpec.describe BaseApi::Client::Items do
       BaseApi.reset!
     end
     let(:client) { BaseApi::Client.new(access_token: test_base_access_token) }
-    let(:add_item) do
+    let(:edit_item) do
       {
         item_id: '26105902',
         title: 'testitemchange',
@@ -103,9 +103,23 @@ RSpec.describe BaseApi::Client::Items do
     end
 
     it 'returns item detail' do
-      response = client.items_edit(add_item)
+      response = client.items_edit(edit_item)
       expect(response['item']).not_to be_nil
-      assert_requested :post, base_api_url('/1/items/edit'), body: URI.encode_www_form(add_item)
+      assert_requested :post, base_api_url('/1/items/edit'), body: URI.encode_www_form(edit_item)
+    end
+  end
+
+  describe '.items_delete', :vcr do
+    before do
+      BaseApi.reset!
+    end
+    let(:client) { BaseApi::Client.new(access_token: test_base_access_token) }
+    let(:item_id) { '26105902' }
+
+    it 'returns item detail' do
+      response = client.items_delete(item_id)
+      expect(response['result']).to be true
+      assert_requested :post, base_api_url('/1/items/delete')
     end
   end
 end

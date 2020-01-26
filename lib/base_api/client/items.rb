@@ -30,12 +30,18 @@ module BaseApi
         post_call_api('/1/items/add', item)
       end
 
-
       # @param [Hash] item
       # @return [HTTParty::Response]
       # @see https://docs.thebase.in/docs/api/items/edit
       def items_edit(item)
         post_call_api('/1/items/edit', item)
+      end
+
+      # @param [Integer|String] item_id
+      # @return [HTTParty::Response]
+      # @see https://docs.thebase.in/docs/api/items/edit
+      def items_delete(item_id)
+        post_call_api('/1/items/delete', { item_id: item_id })
       end
     end
   end
