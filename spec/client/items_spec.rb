@@ -80,7 +80,7 @@ RSpec.describe BaseApi::Client::Items do
       }
     end
 
-    it 'returns item detail' do
+    it 'creates item' do
       response = client.items_add(add_item)
       expect(response['item']).not_to be_nil
       assert_requested :post, base_api_url('/1/items/add'), body: URI.encode_www_form(add_item)
@@ -102,7 +102,7 @@ RSpec.describe BaseApi::Client::Items do
       }
     end
 
-    it 'returns item detail' do
+    it 'updates item' do
       response = client.items_edit(edit_item)
       expect(response['item']).not_to be_nil
       assert_requested :post, base_api_url('/1/items/edit'), body: URI.encode_www_form(edit_item)
@@ -136,7 +136,7 @@ RSpec.describe BaseApi::Client::Items do
       }
     end
 
-    it 'returns item detail' do
+    it 'adds item image' do
       response = client.items_add_image(item_image)
       expect(response['item']).not_to be_nil
       assert_requested :post, base_api_url('/1/items/add_image')
@@ -151,7 +151,7 @@ RSpec.describe BaseApi::Client::Items do
     let(:item_id) { 26105775 }
     let(:image_no) { 2 }
 
-    it 'returns item detail' do
+    it 'deletes item image' do
       response = client.items_delete_image(item_id, image_no)
       expect(response['item']).not_to be_nil
       assert_requested :post, base_api_url('/1/items/delete_image')
