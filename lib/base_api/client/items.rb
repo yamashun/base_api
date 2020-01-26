@@ -58,6 +58,13 @@ module BaseApi
       def items_delete_image(item_id, image_no)
         post_call_api('/1/items/delete_image', { item_id: item_id, image_no: image_no })
       end
+
+      # @param [Hash] params
+      # @return [HTTParty::Response]
+      # @see https://docs.thebase.in/docs/api/items/edit_stock
+      def items_edit_stock(params)
+        post_call_api('/1/items/edit_stock', params)
+      end
     end
   end
 end
