@@ -86,4 +86,26 @@ RSpec.describe BaseApi::Client::Items do
       assert_requested :post, base_api_url('/1/items/add'), body: URI.encode_www_form(add_item)
     end
   end
+
+  describe '.items_edit', :vcr do
+    before do
+      BaseApi.reset!
+    end
+    let(:client) { BaseApi::Client.new(access_token: test_base_access_token) }
+    let(:add_item) do
+      {
+        item_id: '26105902',
+        title: 'testitemchange',
+        detail: 'testitemdetail',
+        price: 1200,
+        stock: 1
+      }
+    end
+
+    it 'returns item detail' do
+      response = client.items_edit(add_item)
+      expect(response['item']).not_to be_nil
+      assert_requested :post, base_api_url('/1/items/edit'), body: URI.encode_www_form(add_item)
+    end
+  end
 end
