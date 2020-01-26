@@ -122,4 +122,24 @@ RSpec.describe BaseApi::Client::Items do
       assert_requested :post, base_api_url('/1/items/delete')
     end
   end
+
+  describe '.items_add_image', :vcr do
+    before do
+      BaseApi.reset!
+    end
+    let(:client) { BaseApi::Client.new(access_token: test_base_access_token) }
+    let(:item_image) do
+      {
+        item_id: 26105775,
+        image_no: 1,
+        image_url: 'https://basefile.akamaized.net/yamashun/5e2d0a541fabc/ruby-icon-6555.jpg'
+      }
+    end
+
+    it 'returns item detail' do
+      response = client.items_add_image(item_image)
+      expect(response['item']).not_to be_nil
+      assert_requested :post, base_api_url('/1/items/add_image')
+    end
+  end
 end

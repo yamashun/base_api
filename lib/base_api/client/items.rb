@@ -43,6 +43,13 @@ module BaseApi
       def items_delete(item_id)
         post_call_api('/1/items/delete', { item_id: item_id })
       end
+
+      # @param [Hash] item_image
+      # @return [HTTParty::Response]
+      # @see https://docs.thebase.in/docs/api/items/edit
+      def items_add_image(item_image)
+        post_call_api('/1/items/add_image', item_image)
+      end
     end
   end
 end
