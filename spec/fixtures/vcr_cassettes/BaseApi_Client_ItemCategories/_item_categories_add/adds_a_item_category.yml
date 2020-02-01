@@ -1,0 +1,32 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.thebase.in/1/item_categories/add
+    body:
+      encoding: UTF-8
+      string: item_id=26105872&category_id=2159127
+    headers:
+      Authorization:
+      - Bearer <BearerToken>
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Date:
+      - Sat, 01 Feb 2020 13:28:34 GMT
+      Server:
+      - nginx
+      Content-Length:
+      - '92'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"item_categories":[{"item_category_id":28218662,"item_id":26105872,"category_id":2159127}]}'
+    http_version:
+  recorded_at: Sat, 01 Feb 2020 13:28:34 GMT
+recorded_with: VCR 5.0.0

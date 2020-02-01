@@ -13,4 +13,17 @@ RSpec.describe BaseApi::Client::ItemCategories do
       assert_requested :get, base_api_url("/1/item_categories/detail/#{item_id}")
     end
   end
+
+  describe '.item_categories_add', :vcr do
+    let(:client) { BaseApi::Client.new(access_token: test_base_access_token) }
+    let(:item_id) { 26105872 }
+    let(:category_id) { 2159127 }
+
+    it 'adds a item category' do
+      reponse = client.item_categories_add(item_id, category_id)
+      expect(reponse['item_categories']).not_to be_nil
+      assert_requested :post, base_api_url("/1/item_categories/add"),
+        body: URI.encode_www_form({ item_id: item_id, category_id: category_id })
+    end
+  end
 end
