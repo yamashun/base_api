@@ -22,6 +22,13 @@ module BaseApi
       def categories_edit(category_id, option = {})
         post_call_api('/1/categories/edit',  { category_id: category_id }.merge(option))
       end
+
+      # @param [Integer|String] category_id
+      # @return [HTTParty::Response]
+      # @see https://docs.thebase.in/docs/api/categories/delete
+      def categories_delete(category_id)
+        post_call_api('/1/categories/delete', { category_id: category_id })
+      end
     end
   end
 end
