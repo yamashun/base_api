@@ -3,6 +3,7 @@ require 'httparty'
 require 'base_api/client/authorizations'
 require 'base_api/client/users'
 require 'base_api/client/items'
+require 'base_api/client/categories'
 require 'base_api/client/orders'
 
 module BaseApi
@@ -12,6 +13,7 @@ module BaseApi
     include BaseApi::Client::Authorizations
     include BaseApi::Client::Users
     include BaseApi::Client::Items
+    include BaseApi::Client::Categories
     include BaseApi::Client::Orders
 
     base_uri 'https://api.thebase.in'
