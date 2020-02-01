@@ -27,4 +27,20 @@ RSpec.describe BaseApi::Client::Categories do
         body: URI.encode_www_form({ name: name}.merge(option))
     end
   end
+
+  describe '.categories_edit', :vcr do
+    before do
+      BaseApi.reset!
+    end
+    let(:client) { BaseApi::Client.new(access_token: test_base_access_token) }
+    let(:category_id) { 2159157 }
+    let(:option) { { name: 'updatecategory' } }
+
+    it 'updates a category' do
+      reponse = client.categories_edit(category_id, option)
+      expect(reponse['categories']).not_to be_nil
+      assert_requested :post, base_api_url('/1/categories/edit'),
+        body: URI.encode_www_form({ category_id: category_id }.merge(option))
+    end
+  end
 end
