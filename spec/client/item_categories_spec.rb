@@ -22,8 +22,20 @@ RSpec.describe BaseApi::Client::ItemCategories do
     it 'adds a item category' do
       reponse = client.item_categories_add(item_id, category_id)
       expect(reponse['item_categories']).not_to be_nil
-      assert_requested :post, base_api_url("/1/item_categories/add"),
+      assert_requested :post, base_api_url('/1/item_categories/add'),
         body: URI.encode_www_form({ item_id: item_id, category_id: category_id })
+    end
+  end
+
+  describe '.item_categories_delete', :vcr do
+    let(:client) { BaseApi::Client.new(access_token: test_base_access_token) }
+    let(:item_category_id) { 28218662 }
+
+    it 'deletes a item category' do
+      reponse = client.item_categories_delete(item_category_id)
+      expect(reponse['item_categories']).not_to be_nil
+      assert_requested :post, base_api_url('/1/item_categories/delete'),
+        body: URI.encode_www_form({ item_category_id: item_category_id })
     end
   end
 end
