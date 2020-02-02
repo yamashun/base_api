@@ -17,7 +17,7 @@ module BaseApi
       # @return [HTTParty::Response]
       # @see https://docs.thebase.in/docs/api/orders/detail
       def orders_detail(unique_key)
-        get_call_api("/1/orders/detail/#{unique_key}", {})
+        call_get_api("/1/orders/detail/#{unique_key}", {})
       end
     end
   end

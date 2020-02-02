@@ -4,7 +4,7 @@ module BaseApi
       # @return [HTTParty::Response]
       # @see https://docs.thebase.in/docs/api/categories/
       def categories
-        get_call_api('/1/categories')
+        call_get_api('/1/categories')
       end
 
       # @param [String] name
@@ -12,7 +12,7 @@ module BaseApi
       # @return [HTTParty::Response]
       # @see https://docs.thebase.in/docs/api/categories/add
       def categories_add(name, option = {})
-        post_call_api('/1/categories/add',  { name: name }.merge(option))
+        call_post_api('/1/categories/add',  { name: name }.merge(option))
       end
 
       # @param [Integer|String] category_id
@@ -20,14 +20,14 @@ module BaseApi
       # @return [HTTParty::Response]
       # @see https://docs.thebase.in/docs/api/categories/edit
       def categories_edit(category_id, option = {})
-        post_call_api('/1/categories/edit',  { category_id: category_id }.merge(option))
+        call_post_api('/1/categories/edit',  { category_id: category_id }.merge(option))
       end
 
       # @param [Integer|String] category_id
       # @return [HTTParty::Response]
       # @see https://docs.thebase.in/docs/api/categories/delete
       def categories_delete(category_id)
-        post_call_api('/1/categories/delete', { category_id: category_id })
+        call_post_api('/1/categories/delete', { category_id: category_id })
       end
     end
   end

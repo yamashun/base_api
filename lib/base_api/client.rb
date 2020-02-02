@@ -54,11 +54,11 @@ module BaseApi
 
     private
 
-    def post_call_api(path, payload = {})
+    def call_post_api(path, payload = {})
       @response = self.class.post(path, { body: payload, headers: authorization_header })
     end
 
-    def get_call_api(path, payload = {})
+    def call_get_api(path, payload = {})
       @response = self.class.get(path, { query: payload, headers: authorization_header })
     end
 
@@ -80,7 +80,7 @@ module BaseApi
 
       @last_page_args = { path: path, payload: payload }
 
-      get_call_api(path, payload)
+      call_get_api(path, payload)
     end
 
     def next_page_payload

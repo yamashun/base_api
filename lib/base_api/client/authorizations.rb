@@ -2,7 +2,7 @@ module BaseApi
   class Client
     module Authorizations
       def oauth_access_token(&block)
-        post_call_api('/1/oauth/token', access_token_payload)
+        call_post_api('/1/oauth/token', access_token_payload)
         if response.success?
           @access_token = response['access_token']
           @refresh_token = response['refresh_token']
@@ -15,7 +15,7 @@ module BaseApi
       end
 
       def oauth_refresh_token(&block)
-        post_call_api('/1/oauth/token', refresh_token_payload)
+        call_post_api('/1/oauth/token', refresh_token_payload)
         if response.success?
           @access_token = response['access_token']
           @refresh_token = response['refresh_token']
