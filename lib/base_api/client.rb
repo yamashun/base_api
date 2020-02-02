@@ -49,7 +49,7 @@ module BaseApi
 
     def reset_response
       @response = nil
-      @@last_page_args = nil
+      @last_page_args = nil
     end
 
     private
@@ -67,7 +67,7 @@ module BaseApi
     end
 
     def paginate(path, payload = {})
-      if defined?(@last_page_args) && @last_page_args[:path] != path
+      if different_path_request_called?(path)
         reset_response
       end
 
@@ -86,6 +86,10 @@ module BaseApi
     def next_page_payload
       next_offset = @last_page_args[:payload][:offset] + @last_page_args[:payload][:limit]
       @last_page_args[:payload].merge(offset: next_offset)
+    end
+
+    def different_path_request_called?(path)
+      @last_page_args.is_a?(Hash) && @last_page_args[:path] != path
     end
   end
 end
