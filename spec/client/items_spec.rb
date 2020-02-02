@@ -116,7 +116,7 @@ RSpec.describe BaseApi::Client::Items do
     let(:client) { BaseApi::Client.new(access_token: test_base_access_token) }
     let(:item_id) { '26105902' }
 
-    it 'returns item detail' do
+    it 'deletes item' do
       response = client.items_delete(item_id)
       expect(response['result']).to be true
       assert_requested :post, base_api_url('/1/items/delete')
