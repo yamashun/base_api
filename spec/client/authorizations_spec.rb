@@ -41,10 +41,12 @@ RSpec.describe BaseApi::Client::Authorizations do
             access_token: "BearerToken", refresh_token: "RefreshToken"
           )
 
-          client.oauth_access_token do |response|
-            model_mock.save(
-              access_token: response['access_token'], refresh_token: response['refresh_token']
-            )
+          client.oauth_access_token do |res, err|
+            if err.nil?
+              model_mock.save(
+                access_token: res['access_token'], refresh_token: res['refresh_token']
+              )
+            end
           end
 
           expect(client.access_token).not_to be_nil
@@ -67,7 +69,12 @@ RSpec.describe BaseApi::Client::Authorizations do
       end
 
       it 'returns client errors' do
-        response = client.oauth_access_token
+        begin
+          client.oauth_access_token
+        rescue => e
+          expect(e.is_a?(BaseApi::ClientError)).to be true
+        end
+        response = client.response
 
         expect(response.client_error?).to be true
         expect(client.access_token).to be_nil
@@ -81,8 +88,8 @@ RSpec.describe BaseApi::Client::Authorizations do
         it 'returns client errors and block yeild' do
           # TODO: add public interface to handle error response
           expect(model_mock).to receive(:invalidate)
-          response = client.oauth_access_token do |response|
-            if response.client_error?
+          response = client.oauth_access_token do |res, err|
+            if err
               model_mock.invalidate
             end
           end
@@ -136,10 +143,12 @@ RSpec.describe BaseApi::Client::Authorizations do
             access_token: "BearerToken", refresh_token: "RefreshToken"
           )
 
-          client.oauth_refresh_token do |response|
-            model_mock.save(
-              access_token: response['access_token'], refresh_token: response['refresh_token']
-            )
+          client.oauth_refresh_token do |res, err|
+            if err.nil?
+              model_mock.save(
+                access_token: res['access_token'], refresh_token: res['refresh_token']
+              )
+            end
           end
 
           expect(client.access_token).not_to be_nil
@@ -162,7 +171,12 @@ RSpec.describe BaseApi::Client::Authorizations do
       end
 
       it 'returns client errors' do
-        response = client.oauth_refresh_token
+        begin
+          client.oauth_refresh_token
+        rescue => e
+          expect(e.is_a?(BaseApi::ClientError)).to be true
+        end
+        response = client.response
 
         expect(response.client_error?).to be true
         expect(client.access_token).to be_nil
@@ -176,8 +190,8 @@ RSpec.describe BaseApi::Client::Authorizations do
         it 'returns client errors and yeild' do
           # TODO: add public interface to handle error response
           expect(model_mock).to receive(:invalidate)
-          response = client.oauth_refresh_token do |response|
-            if response.client_error?
+          response = client.oauth_refresh_token do |res, err|
+            if err
               model_mock.invalidate
             end
           end

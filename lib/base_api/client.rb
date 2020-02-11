@@ -1,5 +1,6 @@
 require 'base_api/configurable'
 require 'httparty'
+require 'base_api/error'
 require 'base_api/client/authorizations'
 require 'base_api/client/users'
 require 'base_api/client/items'
@@ -8,6 +9,7 @@ require 'base_api/client/item_categories'
 require 'base_api/client/orders'
 
 module BaseApi
+  # TODO: 責務でクラス分ける
   class Client
     include HTTParty
     include BaseApi::Configurable
@@ -54,12 +56,21 @@ module BaseApi
 
     private
 
-    def call_post_api(path, payload = {})
+    def call_post_api(path, payload = {}, &callback)
       @response = self.class.post(path, { body: payload, headers: authorization_header })
+      handle_response(&callback)
     end
 
-    def call_get_api(path, payload = {})
+    def call_get_api(path, payload = {}, &callback)
       @response = self.class.get(path, { query: payload, headers: authorization_header })
+      handle_response(&callback)
+    end
+
+    def handle_response(&callback)
+      check_status
+      success(response, &callback)
+    rescue => e
+      error(e, &callback)
     end
 
     def authorization_header
@@ -90,6 +101,28 @@ module BaseApi
 
     def different_path_request_called?(path)
       @last_page_args.is_a?(Hash) && @last_page_args[:path] != path
+    end
+
+    def check_status
+      if response.client_error?
+        raise BaseApi::ClientError.new(response)
+      elsif response.server_error?
+        raise BaseApi::ServerError.new(response)
+      end
+    end
+
+    def success(response, &block)
+      block.call(response, nil) if block_given?
+      response
+    end
+
+    def error(error, &block)
+      if block_given?
+        block.call(response, error)
+        response
+      else
+        raise error
+      end
     end
   end
 end
