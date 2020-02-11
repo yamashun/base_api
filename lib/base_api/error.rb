@@ -23,7 +23,7 @@ module BaseApi
       message = "#{response_status}: "
       message << "#{@response['error']} " if @response['error']
       message << "#{@response['error_description']}" if @response['error_description']
-      message << ", uri: #{@response.request.uri}"
+      message << " uri: #{@response.request.uri}"
       message
     end
   end
