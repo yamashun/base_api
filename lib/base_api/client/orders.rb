@@ -7,8 +7,8 @@ module BaseApi
       #   ex) { limit: 20, offset: 50 }
       # @return [HTTParty::Response]
       # @see https://docs.thebase.in/docs/api/orders/
-      def orders(option = {})
-        paginate('/1/orders', option)
+      def orders(option = {}, &block)
+        paginate('/1/orders', option, &block)
       end
 
       # Get a single order
@@ -16,8 +16,8 @@ module BaseApi
       # @param [String] unique_key
       # @return [HTTParty::Response]
       # @see https://docs.thebase.in/docs/api/orders/detail
-      def orders_detail(unique_key)
-        call_get_api("/1/orders/detail/#{unique_key}", {})
+      def orders_detail(unique_key, &block)
+        call_get_api("/1/orders/detail/#{unique_key}", {}, &block)
       end
     end
   end

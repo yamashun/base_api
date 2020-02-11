@@ -45,8 +45,8 @@ module BaseApi
       inspected
     end
 
-    def fetch_next_page
-      paginate(@last_page_args[:path], next_page_payload)
+    def fetch_next_page(&callback)
+      paginate(@last_page_args[:path], next_page_payload, &callback)
     end
 
     def reset_response
@@ -77,7 +77,7 @@ module BaseApi
       { Authorization: "Bearer #{access_token}" }
     end
 
-    def paginate(path, payload = {})
+    def paginate(path, payload = {}, &callback)
       if different_path_request_called?(path)
         reset_response
       end
@@ -92,6 +92,7 @@ module BaseApi
       @last_page_args = { path: path, payload: payload }
 
       call_get_api(path, payload)
+      handle_response(&callback)
     end
 
     def next_page_payload
