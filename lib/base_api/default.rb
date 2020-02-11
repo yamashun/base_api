@@ -30,7 +30,7 @@ module BaseApi
       end
 
       def limit
-        ENV.fetch("BASE_API_limit") { 10 }
+        ENV.fetch("BASE_API_LIMIT") { 20 }
       end
 
       def offset
