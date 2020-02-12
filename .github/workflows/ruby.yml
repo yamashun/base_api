@@ -15,6 +15,12 @@ jobs:
       with:
         ruby-version: ${{ matrix.ruby }}
     - name: Build and test with RSpec
+      env:
+        BASE_API_SHOP_URL: ${{ secrets.BASE_API_SHOP_URL }}
+        BASE_API_ACCESS_TOKEN: ${{ secrets.BASE_API_ACCESS_TOKEN }}
+        BASE_API_CLIENT_ID: ${{ secrets.BASE_API_CLIENT_ID }}
+        BASE_API_REDIRECT_URI: ${{ secrets.BASE_API_REDIRECT_URI }}
+        BASE_API_CLIENT_SECRET: ${{ secrets.BASE_API_CLIENT_SECRET }}
       run: |
         gem install bundler
         bundle install --jobs 4 --retry 3
