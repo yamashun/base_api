@@ -1,5 +1,8 @@
 # BaseApi
+![](https://github.com/yamashun/base_api/workflows/ruby/badge.svg)
+
 A Ruby interface to the BASE API. (This library is unofficial.)
+
 [BASE API doc](https://docs.thebase.in/docs/api/)
 
 BASE is a Japanese service that allows you to easily open an online shop. Please check the [official page](https://thebase.in/) for details.
