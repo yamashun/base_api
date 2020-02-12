@@ -31,14 +31,7 @@ RSpec.describe BaseApi::Client do
       it 'sets class option values' do
         client = BaseApi::Client.new
         BaseApi::Configurable.keys.each do |key|
-          expect_value = nil
-          case key
-          when :limit
-            expect_value = 10
-          when :offset
-            expect_value = 0
-          end
-          expect(client.instance_variable_get(:"@#{key}")).to eq expect_value
+          expect(client.instance_variable_get(:"@#{key}")).to eq BaseApi::Default.send(key)
         end
       end
     end
