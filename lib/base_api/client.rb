@@ -91,8 +91,7 @@ module BaseApi
 
       @last_page_args = { path: path, payload: payload }
 
-      call_get_api(path, payload)
-      handle_response(&callback)
+      call_get_api(path, payload, &callback)
     end
 
     def next_page_payload
