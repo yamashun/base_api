@@ -1,5 +1,5 @@
 # BaseApi
-![](https://github.com/yamashun/base_api/workflows/ruby/badge.svg)
+![](https://github.com/yamashun/base_api/workflows/Rspec/badge.svg)
 
 A Ruby interface to the BASE API. (This library is unofficial.)
 
