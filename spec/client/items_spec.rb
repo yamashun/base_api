@@ -11,7 +11,7 @@ RSpec.describe BaseApi::Client::Items do
     it 'returns items' do
       response = client.items
       expect(response['items'].first['item_id']).not_to be_nil
-      assert_requested :get, base_api_url("/1/items?offset=0&limit=10")
+      assert_requested :get, base_api_url("/1/items?offset=0&limit=20")
     end
 
     it 'returns items and returns next page' do
@@ -37,7 +37,7 @@ RSpec.describe BaseApi::Client::Items do
       it 'returns items' do
         response = client.items_search(serach_word)
         expect(response['items'].first['item_id']).not_to be_nil
-        assert_requested :get, base_api_url("/1/items/search?q=#{CGI.escape(serach_word)}&offset=0&limit=10")
+        assert_requested :get, base_api_url("/1/items/search?q=#{CGI.escape(serach_word)}&offset=0&limit=20")
       end
     end
 
@@ -47,7 +47,7 @@ RSpec.describe BaseApi::Client::Items do
       it 'returns items' do
         response = client.items_search(serach_word, option)
         expect(response['items'].first['item_id']).not_to be_nil
-        assert_requested :get, base_api_url("/1/items/search?q=#{CGI.escape(serach_word)}&offset=0&limit=10&fields=title,detail")
+        assert_requested :get, base_api_url("/1/items/search?q=#{CGI.escape(serach_word)}&offset=0&limit=20&fields=title,detail")
       end
     end
   end

@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://api.thebase.in/1/orders?limit=10&offset=0
+    uri: https://api.thebase.in/1/orders?limit=20&offset=0
     body:
       encoding: US-ASCII
       string: ''

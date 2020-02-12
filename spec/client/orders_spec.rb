@@ -9,7 +9,7 @@ RSpec.describe BaseApi::Client::Orders do
     it 'returns orders' do
       reponse = client.orders
       expect(reponse['orders']).not_to be_nil
-      assert_requested :get, base_api_url('/1/orders?limit=10&offset=0')
+      assert_requested :get, base_api_url("/1/orders?limit=#{BaseApi::Default.limit}&offset=0")
     end
 
     # TODO: add pagination test case
