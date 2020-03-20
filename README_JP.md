@@ -82,7 +82,19 @@ client.items do |res, err|
 end
 ```
 
+## 未対応API
+現在以下のAPIは未対応
+- [GET /1/oauth/authorize](https://docs.thebase.in/docs/api/oauth/authorize)
+- [POST /1/orders/edit_status](https://docs.thebase.in/docs/api/orders/edit_status)
+- [GET /1/savings](https://docs.thebase.in/docs/api/savings/)
+- [GET /1/delivery_companies](https://docs.thebase.in/docs/api/delivery_companies/)
+- [GET /1/search](https://docs.thebase.in/docs/api/search/)
+- [GET /1/search/refresh](https://docs.thebase.in/docs/api/search/refresh)
 
+
+## TODO
+- 未対応APIの対応
+- Railsアプリ用の認可コード取得のためのMVCテンプレートとジェネレータ
 
 ## Development
 
