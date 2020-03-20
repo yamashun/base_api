@@ -4,9 +4,7 @@
 BASE APIのためのクライアントを提供するRuby gemです。（非公式です。）
 [BASE API doc](https://docs.thebase.in/docs/api/)
 
-BASEは簡単にネットショップを開設できる日本のサービスです。詳しくは公式ページを確認してください。
-Please check the [official page](https://thebase.in/) for details.
-
+BASEは簡単にネットショップを開設できる日本のサービスです。詳しくは公式ページ[公式ページ](https://thebase.in/)を確認してください。
 
 ## Installation
 
@@ -72,7 +70,7 @@ client.fetch_next_page
 ```
 
 ### コールバック
-ブロックを渡すことでAPIの結果に応じた処理をが可能です。ブロックはレスポンス結果とエラーオブジェクトを引数にとります。
+ブロックを渡すことでAPIの結果に応じた処理が可能です。ブロックはレスポンス結果とエラーオブジェクトを引数にとります。
 
 ```ruby
 client.items do |res, err|

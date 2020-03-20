@@ -7,6 +7,8 @@ A Ruby interface to the BASE API. (This library is unofficial.)
 
 BASE is a Japanese service that allows you to easily open an online shop. Please check the [official page](https://thebase.in/) for details.
 
+[日本語版のREADME](https://github.com/yamashun/base_api/blob/master/README_JP.md)
+
 ## Installation
 
 Add this line to your application's Gemfile:
@@ -27,7 +29,7 @@ Or install it yourself as:
 ### Basic usage
 
 ```ruby
-# Provide authentication token
+# Initialize Client instance with bearer token issued with OAuth2.0
 client = BaseApi::Client.new(access_token: 'bearer token')
 
 # Fetch items
@@ -35,7 +37,7 @@ response = client.items
 response['items']
 ```
 
-### Default results per_page
+### Default results per request
 Default results from the BASE API are 20. If you wish to change per request results number, you can set in three ways:
 
 ```bash
