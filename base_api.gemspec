@@ -6,8 +6,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ["yamashun"]
   spec.email         = ["yshunske@gmail.com"]
 
-  spec.summary       = %q{summary}
-  spec.description   = %q{description}
+  spec.summary       = %q{A Ruby interface to the BASE API. (This library is unofficial.)}
+  spec.description   = %q{BASE is a Japanese service that allows you to easily open an online shop. Please check the official page(https://thebase.in/) for details}
   spec.homepage      = "https://github.com/yamashun/base_api"
   spec.license       = "MIT"
   spec.required_ruby_version = Gem::Requirement.new(">= 2.3.0")
